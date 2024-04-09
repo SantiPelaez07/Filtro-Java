@@ -1,8 +1,6 @@
 import controller.CoderController;
 import controller.ContratacionController;
 import controller.VacanteController;
-import database.ConfigDB;
-import model.CoderModel;
 
 import javax.swing.*;
 
@@ -24,10 +22,13 @@ int option = 0, optionCoder = 0, optionContratacion = 0, optionVacante = 0;
                         optionCoder = Integer.parseInt(JOptionPane.showInputDialog("""
                                 1. Crear Coder
                                 2. Listar Coders.
-                                3. Actualizar Coder.
-                                4. Eliminar Coder.
+                                3. Buscar Coders por cohorte.
+                                4. Buscar Coders por clan.
+                                5. Buscar Coders por cv
+                                6. Actualizar Coder.
+                                7. Eliminar Coder.
                                                             
-                                5. Salir
+                                8. Salir
                                 Ingrese la opción deseada: 
                                 """));
                         switch (optionCoder) {
@@ -38,13 +39,22 @@ int option = 0, optionCoder = 0, optionContratacion = 0, optionVacante = 0;
                                 CoderController.listar();
                                 break;
                             case 3:
-                                CoderController.actualizar();
+                                CoderController.buscarCohorte();
                                 break;
                             case 4:
+                                CoderController.buscarClan();
+                                break;
+                            case 5:
+                                CoderController.buscarCv();
+                                break;
+                            case 6:
+                                CoderController.actualizar();
+                                break;
+                            case 7:
                                 CoderController.eliminar();
                                 break;
                         }
-                    }while (optionCoder != 5);
+                    }while (optionCoder != 8);
                     break;
                 case 2:
                     do {
@@ -78,10 +88,12 @@ int option = 0, optionCoder = 0, optionContratacion = 0, optionVacante = 0;
                         optionVacante = Integer.parseInt(JOptionPane.showInputDialog("""
                                 1. Crear Vacante.
                                 2. Listar Vacantes.
-                                3. Actualizar Vacante.
-                                4. Eliminar Vacante.
+                                3. Buscar Vacante(s) por nombre.
+                                4. Buscar Vacante(s) por tecnología.
+                                5. Actualizar Vacante.
+                                6. Eliminar Vacante.
                                                             
-                                5. Salir
+                                7. Salir
                                 Ingrese la opción deseada: 
                                 """));
                         switch (optionVacante) {
@@ -92,13 +104,19 @@ int option = 0, optionCoder = 0, optionContratacion = 0, optionVacante = 0;
                                 VacanteController.listar();
                                 break;
                             case 3:
-                                VacanteController.actualizar();
+                                VacanteController.buscarTitulo();
                                 break;
                             case 4:
+                                VacanteController.buscarTecnologia();
+                                break;
+                            case 5:
+                                VacanteController.actualizar();
+                                break;
+                            case 6:
                                 VacanteController.eliminar();
                                 break;
                         }
-                    }while (optionVacante != 5);
+                    }while (optionVacante != 7);
             }
 
         }while (option != 4);

@@ -9,9 +9,12 @@ import javax.swing.*;
 public class ContratacionController {
     public static void crear(){
         ContratacionModel objModel = new ContratacionModel();
-        String estado = JOptionPane.showInputDialog("Ingrese el estado de la Contratación (Activa/inactiva/pendiente): ");
+        String estado = "Activa";
         double salario = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el salario de la contratación: "));
-        int vacante_id = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el id de la vacante a la cual se le realizó una contratación: "));
+        if (VacanteController.listarString().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debes crear una vacante para hacer la contratación");
+        }else {
+        int vacante_id = Integer.parseInt(JOptionPane.showInputDialog(VacanteController.listarString() + "\nIngrese el id de la vacante a la cual se le realizó una contratación: "));
         int coder_id = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el id del coder que se contrató: \n" + CoderController.listarString()));
         Contratacion contratacion = new Contratacion();
         contratacion.setEstado(estado);
@@ -19,6 +22,7 @@ public class ContratacionController {
         contratacion.setVacante_id(vacante_id);
         contratacion.setCoder_id(coder_id);
         objModel.create(contratacion);
+        }
     }
 
     public static String listar(){
@@ -57,7 +61,7 @@ public class ContratacionController {
         if (contratacion == null){
             JOptionPane.showMessageDialog(null, "El id que proporcionaste no corresponde a ninguna Contratación");
         }else {
-            String estado = JOptionPane.showInputDialog("Ingrese el estado de la Contratación (Activa/inactiva/pendiente): ", contratacion.getEstado());
+            String estado = "Activa";
             double salario = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el salario de la contratación: ", contratacion.getSalario()));
             int vacante_id = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el id de la vacante a la cual se le realizó una contratación: ", contratacion.getVacante_id()));
             int coder_id = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el id del coder que se contrató: \n" + CoderController.listarString(), contratacion.getCoder_id()));
@@ -77,6 +81,7 @@ public class ContratacionController {
         if (contratacion == null){
             JOptionPane.showMessageDialog(null, "El id que proporcionaste no corresponde a ninguna contratación");
         }else {
+            objModel.cambiarEstado(contratacion);
             int confirm = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar a esta contratación?\n" + contratacion);
             if (confirm == 0){
                 objModel.delete(contratacion);

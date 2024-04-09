@@ -8,14 +8,16 @@ public class Vacante {
     private String duracion;
     private String estado;
     private int empresa_id;
+    private String tecnologia;
 
-    public Vacante(int id, String titulo, String descripcion, String duracion, String estado, int empresa_id) {
+    public Vacante(int id, String titulo, String descripcion, String duracion, String estado, int empresa_id, String tecnologia) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.duracion = duracion;
         this.estado = estado;
         this.empresa_id = empresa_id;
+        this.tecnologia = tecnologia;
     }
 
     public Vacante(){}
@@ -68,6 +70,14 @@ public class Vacante {
         this.empresa_id = empresa_id;
     }
 
+    public String getTecnologia() {
+        return tecnologia;
+    }
+
+    public void setTecnologia(String tecnologia) {
+        this.tecnologia = tecnologia;
+    }
+
     @Override
     public String toString() {
         return "\nVacante\n" +
@@ -76,6 +86,7 @@ public class Vacante {
                 ", descripción: '" + descripcion + '\'' +
                 ", duración: '" + duracion + '\'' +
                 ", estado: '" + estado + '\'' +
-                ", empresa_id: " + empresa_id;
+                ", empresa_id: " + empresa_id +
+                ", tecnología: " + tecnologia;
     }
 }
